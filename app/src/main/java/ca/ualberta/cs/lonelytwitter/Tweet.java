@@ -11,9 +11,6 @@ public abstract class Tweet {
     protected Date date;
 
     public void setMessage(String message) throws MaxTweetException {
-        if(this.message.length() > 140) {
-            throw new MaxTweetException();
-        }
         this.message = message;
     }
 
@@ -27,6 +24,10 @@ public abstract class Tweet {
 
     public Date getDate() {
         return this.date;
+    }
+
+    public String toString() {
+        return this.date.toString() + " | " + this.message;
     }
 
     public abstract Boolean isImportant();
