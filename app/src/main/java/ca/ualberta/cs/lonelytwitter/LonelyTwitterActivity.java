@@ -26,6 +26,9 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * LonelyTwitterActivity is the main page of the app where we send tweets and view them
+ * */
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
@@ -45,6 +48,7 @@ public class LonelyTwitterActivity extends Activity {
 		Button clearButton = (Button) findViewById(R.id.clear);
  		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
+ 		// give functionality to the Save Button
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -63,6 +67,7 @@ public class LonelyTwitterActivity extends Activity {
 			}
 		});
 
+		// give functionality to the Clear Button
 		clearButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				tweets.clear();
@@ -73,6 +78,10 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+	/**
+	 * when onStart is called the activity will load the tweets from internal storage
+	 * that was saved in previous sessions
+	 * */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -84,6 +93,11 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * loadFromFile deserializes a GSON object file to Tweets and stores it to the tweets member
+	 * attribute
+	 * @return void
+	 * */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
@@ -103,7 +117,10 @@ public class LonelyTwitterActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * saveInFile serializes current list of tweets to a GSON object which can later be deserialized
+	 * and displayed
+	 * */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME, MODE_PRIVATE);

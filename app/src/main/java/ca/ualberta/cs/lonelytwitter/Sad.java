@@ -2,6 +2,9 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
 
+/**
+ * Sad is a Mood subclass describing sadness
+ * */
 public class Sad extends Mood {
     public Sad() {
         super("Sad", new Date());
