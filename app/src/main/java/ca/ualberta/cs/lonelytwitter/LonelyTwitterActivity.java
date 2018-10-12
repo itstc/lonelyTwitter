@@ -53,7 +53,7 @@ public class LonelyTwitterActivity extends Activity {
 				Tweet newTweet = new NormalTweet(text);
 				tweetList.add(newTweet);
 				adapter.notifyDataSetChanged();
-				saveInFile(); // TODO replace this with elastic search
+				new ElasticsearchTweetController.AddTweetTask().execute(newTweet);
 			}
 		});
 
@@ -62,7 +62,10 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				tweetList.clear();
-				deleteFile(FILENAME);  // TODO deprecate this button
+				String searchTerm = bodyText.getText().toString();
+				try {
+					tweetList = new ElasticsearchTweetController.GetTweetTask().execute(searchTerm).get();
+				}catch(Exception e) {}
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -74,7 +77,9 @@ public class LonelyTwitterActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		loadFromFile(); // TODO replace this with elastic search
+		try {
+			tweetList = new ElasticsearchTweetController.GetTweetTask().execute("").get();
+		}catch(Exception e) {}
 		adapter = new ArrayAdapter<Tweet>(this,
 				R.layout.list_item, tweetList);
 		oldTweetsList.setAdapter(adapter);
