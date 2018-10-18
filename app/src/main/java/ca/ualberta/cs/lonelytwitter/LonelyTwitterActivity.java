@@ -42,6 +42,7 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
+		Button searchButton = (Button) findViewById(R.id.search);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +55,6 @@ public class LonelyTwitterActivity extends Activity {
 
 				tweetList.add(newTweet);
 				adapter.notifyDataSetChanged();
-
-				saveInFile();
 			}
 		});
 	}
