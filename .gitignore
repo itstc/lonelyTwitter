@@ -31,3 +31,5 @@ proguard/
 *.war
 *.ear
 app/app.iml
+
+.idea/
