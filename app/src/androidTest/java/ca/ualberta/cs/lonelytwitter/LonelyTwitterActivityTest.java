@@ -22,6 +22,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
 
     }
 
+
     public void testEditTweet() {
         solo.enterText((EditText)solo.getView(R.id.body), "EditTweet");
         solo.clickOnText("Save");
@@ -32,4 +33,5 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
         solo.waitForActivity(EditTweetActivity.class);
         solo.waitForText("EditTweet");
     }
+
 }
